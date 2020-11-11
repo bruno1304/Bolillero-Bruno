@@ -1,0 +1,44 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Bolillero
+{
+    public class Bolillero
+    {
+        public List<byte> adentro { get; set; }
+        public List<byte> afuera { get; set; }
+        Random r { get; set; }
+       
+
+        public Bolillero()
+        {
+            var r = new Random(DateTime.Now.Millisecond);
+        }
+
+        private byte CargarBolillero(byte inicio, byte fin)
+        {
+            for (byte i = inicio; i < fin; i++)
+            {
+                adentro.Add(i);
+            }
+        }
+        public byte SacarBolilla()
+        {
+            var indice = 0;
+            indice = r.Next(adentro.Count);
+            var bolilla = adentro[indice];
+            return bolilla;
+        }
+
+        public void reingresar()
+        {
+            adentro.AddRange(afuera);
+            afuera.Clear();
+        }
+
+
+    }
+}

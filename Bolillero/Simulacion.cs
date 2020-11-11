@@ -9,7 +9,6 @@ namespace Bolillero
     class Simulacion
     {
         Bolillero bolillero = new Bolillero();
-        public List<long> jugarNveces { get; set; }
 
         public bool Jugar (List<byte> jugadas)
         {
@@ -25,13 +24,18 @@ namespace Bolillero
             }
             return true;
         }
-        public bool jugarNveces (List<byte> Jugar, long cantJugadas)
+        public long jugarNveces (List<byte> jugadas, long cantJugadas)
         {
             long cantGanados = 0;
-            for (int i = 0; i < cantGanados + 1; )
+            for (int i = 0; i < cantGanados; i++)
             {
-                this.Jugar
+             
+                if (this.Jugar(jugadas) == true)
+                {
+                    cantGanados++;
+                }
             }
+            return cantGanados;
         }
     }
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Bolillero
 {
-    public class Bolillero
+    public class Bolillero : ICloneable
     {
         public List<byte> adentro { get; set; }
         public List<byte> afuera { get; set; }
@@ -17,8 +17,12 @@ namespace Bolillero
         {
             var r = new Random(DateTime.Now.Millisecond);
         }
-
-        private byte CargarBolillero(byte inicio, byte fin)
+        private Bolillero(Bolillero original) : this()
+        {
+            adentro = new List<byte>(original.adentro);
+            afuera = new List<byte>(original.afuera);
+        }
+        private void CargarBolillero(byte inicio, byte fin)
         {
             for (byte i = inicio; i < fin; i++)
             {
@@ -39,6 +43,9 @@ namespace Bolillero
             afuera.Clear();
         }
 
-
+        public object Clone()
+        {
+            return new Bolillero(this);
+        }
     }
 }

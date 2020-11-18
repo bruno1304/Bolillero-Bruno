@@ -10,7 +10,7 @@ namespace Bolillero
     {
         Bolillero bolillero = new Bolillero();
 
-        public bool Jugar (List<byte> jugadas)
+        public bool Jugar (List<byte> jugadas, Bolillero bolillero)
         {
             var comparar = 0;
             bolillero.reingresar();
@@ -24,18 +24,30 @@ namespace Bolillero
             }
             return true;
         }
-        public long jugarNveces (List<byte> jugadas, long cantJugadas)
+        public long jugarNveces (List<byte> jugadas, long cantJugadas, Bolillero bolillero)
         {
             long cantGanados = 0;
             for (int i = 0; i < cantGanados; i++)
             {
              
-                if (this.Jugar(jugadas) == true)
+                if (this.Jugar(jugadas, bolillero) == true)
                 {
                     cantGanados++;
                 }
             }
             return cantGanados;
+        }
+        public long simularSinHilos(List<byte> jugadas, long cantJugadas)
+        {
+            return jugarNveces(jugadas, cantJugadas, bolillero);
+        }
+        public long simularConHilos(List<byte> jugadas, long cantJugadas, Bolillero bolillero, long cantHilos)
+        {
+            var vectorTarea = new Task<long>[cantHilos];
+            for (int i = 0; i < cantHilos; i++)
+            {
+                Bolillero clon = 
+            }
         }
     }
 }

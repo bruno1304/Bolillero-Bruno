@@ -44,10 +44,18 @@ namespace Bolillero
         public long simularConHilos(List<byte> jugadas, long cantJugadas, Bolillero bolillero, long cantHilos)
         {
             var vectorTarea = new Task<long>[cantHilos];
+            long resto = cantJugadas % cantHilos;
+
             for (int i = 0; i < cantHilos; i++)
             {
-                Bolillero clon = 
+                Bolillero clon = (Bolillero)bolillero.Clone();
+                vectorTarea[i] = Task.Run(() => jugarNveces(jugadas, cantJugadas / cantHilos, clon));
+
             }
+            Bolillero clon1 = (Bolillero)bolillero.Clone();
+            vectorTarea[0] = Task.Run(() => jugarNveces(jugadas, cantJugadas / cantHilos + resto, clon1));
+            Task.WaitAll(vectorTarea);
+            return vectorTarea.Sum(T => T.Result);
         }
     }
 }

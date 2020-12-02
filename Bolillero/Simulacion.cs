@@ -8,7 +8,11 @@ namespace Bolillero
 {
     class Simulacion
     {
+        public Simulacion(Bolillero)
+        {
         Bolillero bolillero = new Bolillero();
+        
+        }
 
         public bool Jugar (List<byte> jugadas, Bolillero bolillero)
         {

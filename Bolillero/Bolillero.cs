@@ -18,8 +18,9 @@ namespace Bolillero
             var r = new Random(DateTime.Now.Millisecond);
             this.CargarBolillero(inicio, fin);
         }
-        private Bolillero(Bolillero original) : this()
+        private Bolillero(Bolillero original)
         {
+            this.r = new Random();
             adentro = new List<byte>(original.adentro);
             afuera = new List<byte>(original.afuera);
         }

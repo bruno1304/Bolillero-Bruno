@@ -13,9 +13,10 @@ namespace Bolillero
         Random r { get; set; }
        
 
-        public Bolillero()
+        public Bolillero(byte inicio, byte fin)
         {
             var r = new Random(DateTime.Now.Millisecond);
+            this.CargarBolillero(inicio, fin);
         }
         private Bolillero(Bolillero original) : this()
         {
